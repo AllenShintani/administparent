@@ -6,32 +6,54 @@ addButton.value = 'serviceXから入力';
 addButton.id = 'serviceX';
 document.querySelector('#vi > p').appendChild(addButton);
 
+//function aiueo{}
+
 //iframe生成
 $('#serviceX').on('click',function(){
+const modalArea= document.createElement('section')
+modalArea.style.width='100%';
+modalArea.style.height='100%'
+modalArea.style.top='0'
+modalArea.style.left='0'
+modalArea.style.display='none'
+modalArea.style.position='fixed'
+modalArea.id='modalA'
+
 const ifra = document.createElement('iframe');
 ifra.src='https://konjikun.github.io/administraition-form/'
 ifra.id='iframe-body'
 ifra.style.width='600px'
 ifra.style.height='800px'
-$('#iframe-body').css({
+ifra.style.top='50%'
+ifra.style.left='50%'
+ifra.style.background ='rgba(0,0,0,50%)'
+ifra.style.border='none'
+ifra.style.position='absolute'
+ifra.style.transform='translate(-50%,-50%)'
+$()
+document.querySelector('#contents').appendChild(modalArea)
+document.querySelector('#contents').appendChild(ifra);
+})
+
+//contents見えなくなる
+contents.style.display='none'
+
+//反応してない！！
+$('#iframe').css({
   'position':'fixed',
   'top':0,
-  'left':0,
+  'left':200,
   'width':'100%',
   'height':'100%',
   'text-align':'center',
-  'background':'rgba(0,0,0,50%)',
+  'background-color':'rgba(0,0,0,5)',
   //paddingのみ抜き
   'overflow':'auto',
   'opacity':0,
-  'visibility':'visible',
+  'visibility':'hide',
   'transition':'.3s',
   'box-sizing':'border-box'
-})
-//contents見えなくなる
-contents.style.display='none'
-document.querySelector('#contents').appendChild(ifra);
-})
+});
 
 
 
