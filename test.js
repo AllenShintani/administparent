@@ -15,8 +15,8 @@ modalArea.style.width='100%';
 modalArea.style.height='100%'
 modalArea.style.top='0'
 modalArea.style.left='0'
-modalArea.style.display='none'
 modalArea.style.position='fixed'
+modalArea.style.background ='rgba(0,0,0,50%)'
 modalArea.id='modalA'
 
 const ifra = document.createElement('iframe');
@@ -26,17 +26,29 @@ ifra.style.width='600px'
 ifra.style.height='800px'
 ifra.style.top='50%'
 ifra.style.left='50%'
-ifra.style.background ='rgba(0,0,0,50%)'
+ifra.style.backgroundColor='white'
 ifra.style.border='none'
 ifra.style.position='absolute'
 ifra.style.transform='translate(-50%,-50%)'
-$()
+
 document.querySelector('#contents').appendChild(modalArea)
 document.querySelector('#contents').appendChild(ifra);
 })
 
+window.addEventListener("message", (event) => {
+	if (event.origin !== "https://github.com/konjikun/administraition-form.git")
+	  return;
+  
+	// ...
+  }, false);
+
+
 //contents見えなくなる
 contents.style.display='none'
+
+//もしかしたらどのサイトでもモーダル統一できるのでは
+const bodyId=document.getElementsByTagName('body')
+bodyId.id='body'
 
 //反応してない！！
 $('#iframe').css({
@@ -54,6 +66,7 @@ $('#iframe').css({
   'transition':'.3s',
   'box-sizing':'border-box'
 });
+
 
 
 
@@ -86,8 +99,9 @@ $(function(){
 
 })
 
+/*
 
-/*モーダル本体の指定 + モーダル外側の背景の指定*/
+モーダル本体の指定 + モーダル外側の背景の指定
 .modal-container{
 	position: fixed;
 	top: 0;
@@ -103,19 +117,19 @@ $(function(){
 	transition: .3s;
     box-sizing: border-box;
 }
-/*モーダル本体の擬似要素の指定*/
+/*モーダル本体の擬似要素の指定
 .modal-container:before{
 	content: "";
 	display: inline-block;
 	vertical-align: middle;
 	height: 100%;
 }
-/*モーダル本体に「active」クラス付与した時のスタイル*/
+/*モーダル本体に「active」クラス付与した時のスタイル
 .modal-container.active{
 	opacity: 1;
 	visibility: visible;
 }
-/*モーダル枠の指定*/
+/*モーダル枠の指定
 .modal-body{
 	position: relative;
 	display: inline-block;
@@ -123,7 +137,7 @@ $(function(){
 	max-width: 500px;
 	width: 90%;
 }
-/*モーダルを閉じるボタンの指定*/
+/*モーダルを閉じるボタンの指定
 .modal-close{
 	position: absolute;
 	display: flex;
@@ -137,13 +151,13 @@ $(function(){
 	color: #fff;
 	cursor: pointer;
 }
-/*モーダル内のコンテンツの指定*/
+/*モーダル内のコンテンツの指定
 .modal-content{
 	background: #fff;
 	text-align: left;
 	padding: 30px;
 }
-
+*/
 //iframe埋め込み  
   ('#iframe').fadein();
 document.querySelector('contents').appendChild(ifra)
@@ -151,3 +165,14 @@ document.querySelector('contents').appendChild(ifra)
 (document.getElementById('serviceX')).click(function(){
     ('#view, #contents').fadeTo(200,1);
   });
+
+const storageIndiv ={
+	nameKatakana:'さとうたろう',
+	nameKanji:'佐藤太郎',
+	addres:'東京都千代田区霞ヶ関二丁目1-1',
+	email:'aaaaa@gmail.com',
+	phone:'07039832820',
+    phoneAdvance:'070',
+	phoneCenter:'3983',
+	phoneBack:'2820',
+}
