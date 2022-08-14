@@ -41,6 +41,47 @@ window.addEventListener("message", (event) => {
   
 	// ...
   }, false);
+  
+  //[配列]は数字のみなので連想配列を使う。保存する個人の情報
+  const storageIndiv ={
+	nameKatakana:'さとうたろう',
+	nameKanji:'佐藤太郎',
+	addres:'東京都千代田区霞ヶ関二丁目1-1',
+	email:'aaaaa@gmail.com',
+	phone:'07039832820',
+    phoneAdvance:'070',
+	phoneCenter:'3983',
+	phoneBack:'2820',
+}
+
+//連想配列を配列の要素として追加
+const storageIndivAdd = []
+storageIndivAdd.push(storageIndiv)
+
+//参照：https://qiita.com/terufumi1122/items/6ddd9c520a9d0a19896a
+//JSON文字列に変換する
+const toJson =JSON.stringify(storageIndivAdd)
+
+//setItem('キー',value)
+localStorage.setItem('suidou',toJson)
+
+//これを水道局に送ればいいのでは？
+emailPost = localStorage.getItem('suidou')
+
+
+  //ここから下はメモ
+
+  var info = document.getElementById('serviceX')
+
+  serviceX.addEventListener('click',()=>{
+	document.getElementById('moushikomiShimeiKn').value = "サトウタロウ";
+    document.getElementById('moushikomiShimeiKj').value = "佐藤太郎";
+    document.getElementById('moushikomiMail').value = "111111@gmail.com";
+    document.getElementById('confirmMoushikomiMail').value = "111111@gmail.com";
+    document.getElementById('moushikomiPhoneNo1').value = "090";
+    document.getElementById('moushikomiPhoneNo2').value = "1111";
+    document.getElementById('moushikomiPhoneNo3').value = "2222";
+  })
 
 
 //contents見えなくなる
@@ -166,13 +207,4 @@ document.querySelector('contents').appendChild(ifra)
     ('#view, #contents').fadeTo(200,1);
   });
 
-const storageIndiv ={
-	nameKatakana:'さとうたろう',
-	nameKanji:'佐藤太郎',
-	addres:'東京都千代田区霞ヶ関二丁目1-1',
-	email:'aaaaa@gmail.com',
-	phone:'07039832820',
-    phoneAdvance:'070',
-	phoneCenter:'3983',
-	phoneBack:'2820',
-}
+//localStrage保存
