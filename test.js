@@ -43,7 +43,7 @@ window.addEventListener("message", (event) => {
   }, false);
   
   //[配列]は数字のみなので連想配列を使う。保存する個人の情報
-  const storageIndiv ={
+  const storageIndivAdd ={
 	nameKatakana:'さとうたろう',
 	nameKanji:'佐藤太郎',
 	addres:'東京都千代田区霞ヶ関二丁目1-1',
@@ -55,19 +55,27 @@ window.addEventListener("message", (event) => {
 }
 
 //連想配列を配列の要素として追加
-const storageIndivAdd = []
-storageIndivAdd.push(storageIndiv)
+const storageIndiv = []
+storageIndiv.push(storageIndivAdd)
+
+//配列変数　ニア＝　連想配列
 
 //参照：https://qiita.com/terufumi1122/items/6ddd9c520a9d0a19896a
 //JSON文字列に変換する
-const toJson =JSON.stringify(storageIndivAdd)
+const toJson =JSON.stringify(storageIndiv)
 
 //setItem('キー',value)
-localStorage.setItem('suidou',toJson)
+localStorage.setItem('https://suidonet.waterworks.metro.tokyo.lg.jp/inet-service/uketsuke/useStart/inputApplicantInfo',toJson)
 
-//これを水道局に送ればいいのでは？
-emailPost = localStorage.getItem('suidou')
+//これを水道局に送ればいいのでは？ =>A.ダメだ。setしたキーを送らないといけない。でないとiframe上のサイトでOk押してもクロスドメインのlocalStorageには保存されていない。
+postToIframe = localStorage.getItem('https://suidonet.waterworks.metro.tokyo.lg.jp/inet-service/uketsuke/useStart/inputApplicantInfo')
 
+  // iframeの場合
+  var iframe = document.querySelector('.iframe');
+  iframe.postMessage({
+	action: 'SyncMessage',
+	message: 'postToIframe'
+  }, '*', );
 
   //ここから下はメモ
 
@@ -208,3 +216,25 @@ document.querySelector('contents').appendChild(ifra)
   });
 
 //localStrage保存
+
+//iframe親から子への送信
+
+  /* iframeの場合
+  document.referrer.postMessage({
+	action: 'SyncMessage',
+	message: 'Hello!'
+  }, '*', );
+*/
+
+/*
+オプション	対象部分	yes （または 1）	no （または 0）
+width=	ウィンドウの横幅	ピクセル数で指定
+height=	ウィンドウの縦幅	ピクセル数で指定
+scrollbars=	スクロールバー	表示可能にする	表示しない
+resizable=	ウィンドウのサイズ変更	変更を可能にする	変更を禁止する
+menubar=	メニューバー	表示する	表示しない
+toolbar=	ツールバー	表示する	表示しない
+location=	ロケーションバー	表示する	表示しない
+directories=	ディレクトリバー	表示する	表示しない
+status=	ステータスバー	表示する	表示しない
+*/
