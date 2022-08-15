@@ -33,14 +33,7 @@ ifra.style.transform='translate(-50%,-50%)'
 
 document.querySelector('#contents').appendChild(modalArea)
 document.querySelector('#contents').appendChild(ifra);
-})
 
-window.addEventListener("message", (event) => {
-	if (event.origin !== "https://github.com/konjikun/administraition-form.git")
-	  return;
-  
-	// ...
-  }, false);
   
   //[配列]は数字のみなので連想配列を使う。保存する個人の情報
   const storageIndivAdd ={
@@ -53,6 +46,7 @@ window.addEventListener("message", (event) => {
 	phoneCenter:'3983',
 	phoneBack:'2820',
 }
+
 
 //連想配列を配列の要素として追加
 const storageIndiv = []
@@ -71,11 +65,23 @@ localStorage.setItem('https://suidonet.waterworks.metro.tokyo.lg.jp/inet-service
 postToIframe = localStorage.getItem('https://suidonet.waterworks.metro.tokyo.lg.jp/inet-service/uketsuke/useStart/inputApplicantInfo')
 
   // iframeの場合
-  var iframe = document.querySelector('.iframe');
+  var iframe = document.querySelector('.iframe-body');
   iframe.postMessage({
 	action: 'SyncMessage',
 	message: 'postToIframe'
   }, '*', );
+
+})
+
+
+//参照：https://developer.mozilla.org/ja/docs/Web/API/Window/postMessage
+window.addEventListener("message", (event) => {
+	if (event.origin !== "https://github.com/konjikun/administraition-form.git")
+	  return; 
+  
+	// ...
+  }, false);
+
 
   //ここから下はメモ
 
