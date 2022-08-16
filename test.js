@@ -6,8 +6,8 @@ addButton.value = 'serviceXから入力';
 addButton.id = 'serviceX';
 document.querySelector('#vi > p').appendChild(addButton);
 
-//function aiueo{}
 
+//function aiueo{}
 //iframe生成
 $('#serviceX').on('click',function(){
 const modalArea= document.createElement('section')
@@ -34,9 +34,18 @@ ifra.style.transform='translate(-50%,-50%)'
 document.querySelector('#contents').appendChild(modalArea)
 document.querySelector('#contents').appendChild(ifra);
 
-  
+prottype=['0','1']
+
+console.log(1)
+$('#iframe-body')[0].contentWindow.postMessage(prottype, '*')
+
+})
+'https://konjikun.github.io/administraition-form/'.onload = ()=>{
+
+}
+
   //[配列]は数字のみなので連想配列を使う。保存する個人の情報
-  const storageIndivAdd =[
+  /*const storageIndivAdd =[
 	nameKatakana,
 	nameKanji,
 	addres,
@@ -45,8 +54,7 @@ document.querySelector('#contents').appendChild(ifra);
     phoneAdvance,
 	phoneCenter,
 	phoneBack
-  ]
-  $('#iframe-body')[0].contentWindow.postMessage(storageIndivAdd, 'https://konjikun.github.io/administraition-form/')
+  ]*/
 
 //ここまで！
 
@@ -77,7 +85,7 @@ $('#iframe-body')[0].contentWindow.postMessage(postToIframe, 'https://konjikun.g
 	message: 'postToIframe'
   }, '*', );
 */
-})
+
 
 
 //参照：https://developer.mozilla.org/ja/docs/Web/API/Window/postMessage
