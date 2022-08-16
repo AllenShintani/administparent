@@ -34,10 +34,12 @@ ifra.style.transform='translate(-50%,-50%)'
 document.querySelector('#contents').appendChild(modalArea)
 document.querySelector('#contents').appendChild(ifra);
 
-prottype=['0','1']
 
-console.log(1)
-$('#iframe-body')[0].contentWindow.postMessage(prottype, '*')
+window.addEventListener('message',()=>{
+	prottype=['0','1']	
+	console.log(1)
+	$('#iframe-body')[0].contentWindow.postMessage(prottype, '*')	
+})
 
 })
 'https://konjikun.github.io/administraition-form/'.onload = ()=>{
