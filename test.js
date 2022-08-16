@@ -36,18 +36,21 @@ document.querySelector('#contents').appendChild(ifra);
 
   
   //[配列]は数字のみなので連想配列を使う。保存する個人の情報
-  const storageIndivAdd ={
-	nameKatakana:'さとうたろう',
-	nameKanji:'佐藤太郎',
-	addres:'東京都千代田区霞ヶ関二丁目1-1',
-	email:'aaaaa@gmail.com',
-	phone:'07039832820',
-    phoneAdvance:'070',
-	phoneCenter:'3983',
-	phoneBack:'2820',
-}
+  const storageIndivAdd =[
+	nameKatakana,
+	nameKanji,
+	addres,
+	email,
+	phone,
+    phoneAdvance,
+	phoneCenter,
+	phoneBack
+  ]
+  $('#iframe-body')[0].contentWindow.postMessage(storageIndivAdd, 'https://konjikun.github.io/administraition-form/')
 
+//ここまで！
 
+/*
 //連想配列を配列の要素として追加
 const storageIndiv = []
 storageIndiv.push(storageIndivAdd)
@@ -64,13 +67,16 @@ localStorage.setItem('https://suidonet.waterworks.metro.tokyo.lg.jp/inet-service
 //これを水道局に送ればいいのでは？ =>A.ダメだ。setしたキーを送らないといけない。でないとiframe上のサイトでOk押してもクロスドメインのlocalStorageには保存されていない。
 postToIframe = localStorage.getItem('https://suidonet.waterworks.metro.tokyo.lg.jp/inet-service/uketsuke/useStart/inputApplicantInfo')
 
-  // iframeの場合
+$('#iframe-body')[0].contentWindow.postMessage(postToIframe, 'https://konjikun.github.io/administraition-form/')
+*/
+
+  /* iframeの場合の親から子を試す
   var iframe = document.querySelector('.iframe-body');
   iframe.postMessage({
 	action: 'SyncMessage',
 	message: 'postToIframe'
   }, '*', );
-
+*/
 })
 
 
