@@ -35,10 +35,24 @@ document.querySelector('#contents').appendChild(modalArea)
 document.querySelector('#contents').appendChild(ifra);
 
 
+demandData = [
+	document.getElementById('moushikomiShimeiKn'),
+	document.getElementById('moushikomiShimeiKj'),
+	document.getElementById('moushikomiMail'),
+	document.getElementById('confirmMoushikomiMail'),
+	document.getElementById('moushikomiPhoneNo1'),
+	document.getElementById('moushikomiPhoneNo2'),
+	document.getElementById('moushikomiPhonNo3')
+
+]
+demandData = JSON.parse(JSON.stringify(demandData));
+
+
+//必要データを要求
 window.addEventListener('message',()=>{
-	prottype=['0','1']	
-	console.log(1)
-	$('#iframe-body')[0].contentWindow.postMessage(prottype, '*')	
+	prottype=['0','1']
+	console.log('js')
+	$('#iframe-body')[0].contentWindow.postMessage(demandData, '*')
 })
 
 })
