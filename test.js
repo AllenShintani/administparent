@@ -4,7 +4,7 @@ addButton.classList.add('addition');
 addButton.type = 'button';
 addButton.value = 'serviceXから入力';
 addButton.id = 'serviceX';
-document.querySelector('#vi > p').appendChild(addButton);
+document.querySelector('#vi > p').appendChild(addButton);//ボタンを置きたい場所
 
 
 //function aiueo{}
@@ -35,27 +35,50 @@ document.querySelector('#contents').appendChild(modalArea)
 document.querySelector('#contents').appendChild(ifra);
 
 
+//ここに欲しいデータの名前を打ち込んでください！
+//ex.  'name':'',
 demandData = [
-	document.getElementById('moushikomiShimeiKn'),
-	document.getElementById('moushikomiShimeiKj'),
-	document.getElementById('moushikomiMail'),
-	document.getElementById('confirmMoushikomiMail'),
-	document.getElementById('moushikomiPhoneNo1'),
-	document.getElementById('moushikomiPhoneNo2'),
-	document.getElementById('moushikomiPhonNo3')
-
+    'nameKatakana',
+    'nameKanji',
+    'addres',
+    'email',
+    'phone',
+    'phoneAdvance',
+    'phoneCenter',
+    'phoneBack',
 ]
+//JSON.parseの文字列はダブルクオーテーションで囲まないとエラーになる。
 demandData = JSON.parse(JSON.stringify(demandData));
-
 
 //必要データを要求
 window.addEventListener('message',()=>{
 	prottype=['0','1']
-	console.log('js')
+	console.log(demandData)
 	$('#iframe-body')[0].contentWindow.postMessage(demandData, '*')
+	window.removeEventListener('message',()=>{
+		prottype=['0','1']
+		console.log(demandData)
+		$('#iframe-body')[0].contentWindow.postMessage(demandData, '*')
+	})
+})
+
+window.addEventListener('message',(serve)=>{
+    serveData = serve.data
+	console.log(serveData)
 })
 
 })
+
+
+
+
+
+
+
+
+
+
+
 'https://konjikun.github.io/administraition-form/'.onload = ()=>{
 
 }
