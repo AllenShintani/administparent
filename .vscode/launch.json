@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": ".NET Core Launch (console)",
-      "type": "coreclr",
+      "type": "node",
       "request": "launch",
       "preLaunchTask": "build",
       "program": "${workspaceFolder}/bin/Debug/net5.0/testapp.dll",
