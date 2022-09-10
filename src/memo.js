@@ -5,7 +5,7 @@ function buttonAdd(x) {
   addButton.type = "button";
   addButton.value = "serviceXから入力";
   addButton.id = "serviceX";
-  document.querySelector("#vi > p").appendChild(addButton);
+  document.querySelector(x).appendChild(addButton);
 
   const modalArea = document.createElement("section");
   modalArea.style.width = "100%";
@@ -31,8 +31,8 @@ function buttonAdd(x) {
   ifra.style.transform = "translate(-50%,-50%)";
   ifra.style.display = "none";
 
-  document.querySelector(x).appendChild(modalArea);
-  document.querySelector(x).appendChild(ifra);
+  document.querySelector("#contents").appendChild(modalArea);
+  document.querySelector("#contents").appendChild(ifra);
   iframe();
   console.log(addButton);
   return addButton;
@@ -46,44 +46,49 @@ function iframe() {
   });
 }
 
-demandData = [
-  "nameKatakana",
-  "nameKanji",
-  "addres",
-  "email",
-  "phoneAdvance",
-  "phoneCenter",
-  "phoneBack",
-];
+Data = {
+  nameKatakana: "moushikomiShimeiKn",
+  nameKanji: "moushikomiShimeiKj",
+  addres: "moushikomiMail",
+  email: "confirmMoushikomiMail",
+  phoneAdvance: "moushikomiPhoneNo1",
+  phoneCenter: "moushikomiPhoneNo2",
+  phoneBack: "moushikomiPhoneNo3",
+};
+demandData = Object.keys(Data);
+outputId = Object.values(Data);
+console.log(demandData);
 
-function readyIframe() {
+function readyIframe(demandData) {
   demandData = JSON.parse(JSON.stringify(demandData));
-  prottype = ["0", "1"];
   console.log(demandData);
   $("#iframe-body")[0].contentWindow.postMessage(demandData, "*");
 }
 
 //readyIframe(demandData);
-function pack() {
-  window.addEventListener("message", readyIframe, { once: true });
+function pack(demandData) {
+  window.addEventListener(
+    "message",
+    () => {
+      readyIframe(demandData);
+    },
+    { once: true }
+  );
   window.addEventListener("message", (serve) => {
     if (typeof serve.data !== "string") {
       $("#iframe-body").fadeOut();
       $("#modalA").fadeOut();
-      console.log(typeof serve.data);
+      console.log(demandData);
+      console.log(serve.data);
       serveData = serve.data;
-      document.getElementById("moushikomiShimeiKn").value = serveData[0];
-      document.getElementById("moushikomiShimeiKj").value = serveData[1];
-      document.getElementById("moushikomiMail").value = serveData[2];
-      document.getElementById("confirmMoushikomiMail").value = serveData[3];
-      document.getElementById("moushikomiPhoneNo1").value = serveData[4];
-      document.getElementById("moushikomiPhoneNo2").value = serveData[5];
-      document.getElementById("moushikomiPhoneNo3").value = serveData[6];
+      for (let num = 0; num < serveData.length; num++) {
+        document.getElementById(outputId[num]).value = serveData[num];
+      }
     }
   });
 }
-buttonAdd("#contents");
-pack();
+buttonAdd("#vi > p");
+pack(demandData);
 load();
 function load() {
   "https://konjikun.github.io/administraition-form/".onload = () => {
