@@ -35,7 +35,7 @@ function buttonAdd(x) {
   document.querySelector("#contents").appendChild(ifra);
   iframe();
   console.log(addButton);
-  return addButton;
+  return pack();
 }
 function iframe() {
   $("#serviceX").on("click", function () {
@@ -55,18 +55,16 @@ Data = {
   phoneCenter: "moushikomiPhoneNo2",
   phoneBack: "moushikomiPhoneNo3",
 };
-demandData = Object.keys(Data);
-outputId = Object.values(Data);
-console.log(demandData);
 
 function readyIframe(demandData) {
   demandData = JSON.parse(JSON.stringify(demandData));
   console.log(demandData);
   $("#iframe-body")[0].contentWindow.postMessage(demandData, "*");
 }
-
 //readyIframe(demandData);
-function pack(demandData) {
+function pack() {
+  demandData = Object.keys(Data);
+  outputId = Object.values(Data);
   window.addEventListener(
     "message",
     () => {
@@ -86,10 +84,9 @@ function pack(demandData) {
       }
     }
   });
+  return load();
 }
 buttonAdd("#vi > p");
-pack(demandData);
-load();
 function load() {
   "https://konjikun.github.io/administraition-form/".onload = () => {
     window.addEventListener(
