@@ -18,7 +18,7 @@ function buttonAdd(x) {
   modalArea.style.display = "none";
 
   const ifra = document.createElement("iframe");
-  ifra.src = "https://konjikun.github.io/administraition-form/";
+  ifra.src = "https://yoshi-program.github.io/modal";
   ifra.id = "iframe-body";
   ifra.style.width = "600px";
   ifra.style.height = "800px";
